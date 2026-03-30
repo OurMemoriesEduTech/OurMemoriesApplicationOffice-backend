@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Verified</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 22px;
+            color: #10b981;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .success-icon {
+            text-align: center;
+            font-size: 64px;
+            margin: 20px 0;
+        }
+        .reference-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .next-steps {
+            background: #e7f3ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="success-icon">✓</div>
+        <div class="greeting">Payment Verified!</div>
+
+        <p>Great news! Your payment for application <strong>#<span th:text="${applicationId}"></span></strong> has been successfully verified.</p>
+
+        <div class="reference-box">
+            <strong>Payment Details:</strong><br>
+            Application ID: #<span th:text="${applicationId}"></span><br>
+            Payment ID: <span th:text="${paymentId}"></span><br>
+            Verification Date: <span th:text="${date}"></span>
+        </div>
+
+        <div class="next-steps">
+            <strong>📋 What's Next?</strong>
+            <ul>
+                <li>Your application is now ready for review</li>
+                <li>Our team will review your application shortly</li>
+                <li>You will receive an email when the review begins</li>
+                <li>Check your dashboard for status updates</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a th:href="${trackingUrl}" style="display: inline-block; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin: 20px 0;">Track Your Application</a>
+        </div>
+
+        <p style="margin-top: 30px;">Thank you for completing your payment. We'll notify you once your application is under review.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 OurMemories ApplicationOffice. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>

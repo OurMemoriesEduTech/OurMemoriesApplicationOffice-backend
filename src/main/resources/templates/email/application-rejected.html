@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Update</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #991b1b 0%, #ef4444 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 22px;
+            color: #991b1b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .reference-box {
+            background: #fff5f5;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        .footer a {
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+        .options {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="greeting">Update on Your Application</div>
+
+        <p>We regret to inform you that your application <strong>#<span th:text="${applicationId}"></span></strong> has been <strong style="color: #ef4444;">REJECTED</strong>.</p>
+
+        <div class="reference-box">
+            <strong>Application Details:</strong><br>
+            Application ID: #<span th:text="${applicationId}"></span><br>
+            Decision Date: <span th:text="${date}"></span>
+        </div>
+
+        <div class="options">
+            <strong>💡 What You Can Do:</strong>
+            <ul>
+                <li>Contact our support team for feedback on your application</li>
+                <li>Explore alternative programs or institutions</li>
+                <li>Start a new application if you wish</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a th:href="${trackingUrl}" class="button">View My Applications</a>
+        </div>
+
+        <p style="margin-top: 30px;">If you have any questions, please contact us at <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}"></a>.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 OurMemories ApplicationOffice. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>

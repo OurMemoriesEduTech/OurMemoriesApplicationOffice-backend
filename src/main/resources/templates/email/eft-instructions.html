@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFT Payment Instructions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 22px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .bank-details {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .bank-details h3 {
+            color: #10b981;
+            margin-top: 0;
+        }
+        .steps {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .step-item {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            background: #1e3a8a;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .warning-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="greeting">EFT Payment Instructions</div>
+
+        <p>Thank you for choosing to pay via EFT. Your application <strong>#<span th:text="${applicationId}"></span></strong> has been received and is pending payment.</p>
+
+        <div class="payment-details" style="background: #e7f3ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <strong>Payment Summary:</strong><br>
+            Application ID: #<span th:text="${applicationId}"></span><br>
+            Payment ID: <span th:text="${paymentId}"></span><br>
+            Amount Due: <strong style="color: #10b981; font-size: 18px;" th:text="${amount}"></strong><br>
+            Due Date: <span th:text="${date}"></span>
+        </div>
+
+        <div class="bank-details">
+            <h3>🏦 Bank Details</h3>
+            <p><strong>Bank:</strong> <span th:text="${bankDetails.bankName}"></span><br>
+                <strong>Account Name:</strong> <span th:text="${bankDetails.accountName}"></span><br>
+                <strong>Account Number:</strong> <span th:text="${bankDetails.accountNumber}"></span><br>
+                <strong>Branch Code:</strong> <span th:text="${bankDetails.branchCode}"></span><br>
+                <strong>Reference:</strong> <code style="background: #1e1e1e; color: #fff; padding: 4px 8px; border-radius: 4px;" th:text="${bankDetails.reference}"></code></p>
+        </div>
+
+        <div class="steps">
+            <strong>📝 How to Complete Your Payment:</strong>
+            <div th:each="step : ${steps}" class="step-item">
+                <div class="step-number" th:text="${step.step}"></div>
+                <span th:text="${step.instruction}"></span>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Important Notes:</strong>
+            <ul>
+                <li>Please use your registered email as reference to help us identify your payment</li>
+                <li>Keep your proof of payment until your application is processed</li>
+                <li>Payments without proof will not be processed</li>
+                <li>You have <strong>48 hours</strong> to upload your proof of payment</li>
+                <li>Verification takes 24-48 hours after upload</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a th:href="${uploadUrl}" class="button">Upload Proof of Payment</a>
+        </div>
+
+        <p style="margin-top: 30px;">If you have any questions, please contact us at <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}"></a>.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 OurMemories ApplicationOffice. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>

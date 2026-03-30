@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Updated</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #003057;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 20px;
+            color: #003057;
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #b31b1b;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 25px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+        .footer a {
+            color: #003057;
+            text-decoration: none;
+        }
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="greeting" th:text="'Dear ' + ${fullName} + ','">Dear User,</div>
+        <p>Your application (Reference: <strong th:text="${referenceNumber}">APP-12345</strong>) has been successfully updated.</p>
+        <p>The changes you made have been saved. You can review your application at any time.</p>
+
+        <div style="text-align: center;">
+            <a th:href="${applicationLink}" class="button">View My Application</a>
+        </div>
+
+        <p class="note">If you did not make these changes, please contact our support team immediately.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 Our Memories Application Office. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>

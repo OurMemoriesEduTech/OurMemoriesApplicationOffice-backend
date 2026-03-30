@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Under Review</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 22px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .info-icon {
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+        }
+        .reference-box {
+            background: #e7f3ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .timeline {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="info-icon">📋</div>
+        <div class="greeting">Application Under Review</div>
+
+        <p>Your application <strong>#<span th:text="${applicationId}"></span></strong> is now <strong style="color: #3b82f6;">UNDER REVIEW</strong> by our team.</p>
+
+        <div class="reference-box">
+            <strong>Application Details:</strong><br>
+            Application ID: #<span th:text="${applicationId}"></span><br>
+            Status Update: <span th:text="${date}"></span>
+        </div>
+
+        <div class="timeline">
+            <strong>⏰ What to Expect:</strong>
+            <ul>
+                <li>Our team is carefully reviewing your application</li>
+                <li>This process typically takes <strong>3-5 business days</strong></li>
+                <li>You will receive an email notification once a decision is made</li>
+                <li>You can track progress in your dashboard</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a th:href="${trackingUrl}" style="display: inline-block; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin: 20px 0;">Track Application</a>
+        </div>
+
+        <p style="margin-top: 30px;">Thank you for your patience. We'll notify you as soon as a decision is made.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 OurMemories ApplicationOffice. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of Payment Received</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #ffd700;
+        }
+        .content {
+            padding: 30px 25px;
+        }
+        .greeting {
+            font-size: 22px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .success-icon {
+            text-align: center;
+            font-size: 64px;
+            margin: 20px 0;
+        }
+        .info-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">OurMemories<br><span>ApplicationOffice</span></div>
+    </div>
+    <div class="content">
+        <div class="success-icon">✓</div>
+        <div class="greeting">Proof of Payment Received</div>
+
+        <p>Thank you for uploading your proof of payment for application <strong>#<span th:text="${applicationId}"></span></strong>.</p>
+
+        <div class="info-box">
+            <strong>What happens next?</strong><br><br>
+            Payment ID: <span th:text="${paymentId}"></span><br>
+            Upload Date: <span th:text="${date}"></span><br>
+            Status: <span style="color: #f59e0b;">Awaiting Verification</span><br>
+            Estimated Verification Time: <strong><span th:text="${estimatedVerificationTime}"></span></strong>
+        </div>
+
+        <p>Our team will review your proof of payment and verify it within <strong th:text="${estimatedVerificationTime}"></strong>. You will receive an email once your payment is verified.</p>
+
+        <div style="text-align: center;">
+            <a th:href="${trackingUrl}" style="display: inline-block; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin: 20px 0;">Track Your Application</a>
+        </div>
+
+        <p>If you have any questions, please contact us at <a th:href="'mailto:' + ${supportEmail}" th:text="${supportEmail}"></a>.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 OurMemories ApplicationOffice. All rights reserved.</p>
+        <p>This is an automated message, please do not reply directly.</p>
+    </div>
+</div>
+</body>
+</html>
