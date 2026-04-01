@@ -83,7 +83,8 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-                "https://our-memories-application-office.vercel.app",
+                "https://our-memories-application-office.vercel.app",  // ✅ Use https, not http
+                "https://our-memories-application-office.vercel.app",  // Also allow with www
                 "http://localhost:5173",  // Add for development
                 "http://localhost:3000"    // Alternative React port
         ));
