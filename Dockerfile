@@ -1,30 +1,27 @@
-# ==================== BUILD STAGE ====================
-FROM eclipse-temurin:21-jdk AS build
+# Stage 1: Build
+FROM maven:3.9-eclipse-temurin-21 AS builder
+
 WORKDIR /app
 
-# Copy Maven Wrapper and pom.xml first (for better caching)
-COPY .mvn/ .mvn
-COPY mvnw .
+# Copy pom.xml and download dependencies first (layer caching)
 COPY pom.xml .
+RUN mvn dependency:go-offline -B
 
-# Fix execute permission for Maven Wrapper
-RUN chmod +x mvnw
+# Copy source and build
+COPY src ./src
+RUN mvn clean package -DskipTests -B
 
-# Copy source code
-COPY src src
+# Stage 2: Run
+FROM eclipse-temurin:21-jre-alpine
 
-# Build the application (skip tests for faster build)
-RUN ./mvnw clean package -DskipTests
-
-# ==================== RUNTIME STAGE ====================
-FROM eclipse-temurin:21-jre
 WORKDIR /app
 
-# Copy the built WAR file from build stage
-COPY --from=build /app/target/OurMemoriesEduSmart-0.0.1-SNAPSHOT.war app.war
+# Create a non-root user for security
+RUN addgroup -S spring && adduser -S spring -G spring
+COPY --from=builder /app/target/*.war /app/app.jar
+RUN chown spring:spring /app/app.jar
+USER spring
 
-# Expose port (Railway will override with $PORT)
-EXPOSE ${PORT:-8080}
+EXPOSE 8080
 
-# Run the Spring Boot app
-ENTRYPOINT ["java", "-jar", "app.war"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
